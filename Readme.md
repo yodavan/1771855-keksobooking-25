@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг»
 
 * Студент: [Иван Лапшов](https://up.htmlacademy.ru/javascript/25/user/1771855).
-* Наставник: `Неизвестно`.
+* Наставник: [Виктор Кан](https://htmlacademy.ru/profile/viktorkan).
 
 ---
 
