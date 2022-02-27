@@ -122,5 +122,3 @@ const createHotelCard = () => ({
 });
 
 const similarHotelCard = Array.from({length: NUMBER_HOTEL_ELEMENTS}, createHotelCard);
-
-similarHotelCard;
