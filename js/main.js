@@ -66,8 +66,8 @@ const getRandomLengthArray = ( elements ) => {
 
     if (!array.includes( el )) {
       array.push( el );
-    };
-  };
+    }
+  }
   return array;
 };
 
@@ -95,9 +95,7 @@ const replacingNumberInString = ( string ) => {
 };
 
 // Функция рандомного выбора элемента из массива
-const getRandomElement = ( array ) => {
-  return array[ getRandomNumber( 0, array.length - 1) ];
-}
+const getRandomElement = ( array ) => array[ getRandomNumber( 0, array.length - 1) ];
 
 // Собирает объект из данных и функций
 const createHotelCard = () => ({
@@ -124,3 +122,5 @@ const createHotelCard = () => ({
 });
 
 const similarHotelCard = Array.from({length: NUMBER_HOTEL_ELEMENTS}, createHotelCard);
+
+similarHotelCard;
