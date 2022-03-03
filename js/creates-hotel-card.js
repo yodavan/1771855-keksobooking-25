@@ -1,4 +1,4 @@
-import { getRandomNumber, getRandomNumberFloat } from './utils.js'
+import { getRandomNumber, getRandomNumberFloat } from './utils.js';
 
 // Данные
 const OFFER = {
