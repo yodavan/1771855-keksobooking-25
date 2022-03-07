@@ -1,4 +1,4 @@
-import {similarHotelCard} from './creates-hotel-card.js';
+import {similarHotelCard} from './random-data.js';
 
 const TRANSLATE_VALUE = {
   flat: 'Квартира',
