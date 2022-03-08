@@ -13,9 +13,9 @@ const PHOTOS_ADD_ELEMENT = ( hotelCard, item ) => {
   const photoElement = photoList.querySelector('.popup__photo');
   const arrayPhotos = item.offer.photos;
 
-  arrayPhotos.forEach(( item ) => {
+  arrayPhotos.forEach(( itemElement ) => {
     const photoItem = photoElement.cloneNode(true);
-    photoItem.src = item;
+    photoItem.src = itemElement;
     photoList.prepend(photoItem);
   });
 
