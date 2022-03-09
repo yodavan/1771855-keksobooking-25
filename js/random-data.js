@@ -39,7 +39,7 @@ const LOCATION = {
 };
 const { latMin, latMax, lngMin, lngMax, locationNumberFloat } = LOCATION;
 
-const NUMBER_HOTEL_ELEMENTS = 3;
+const NUMBER_HOTEL_ELEMENTS = 1;
 
 // Функция - массив случайной длины
 const getRandomLengthArray = ( elements ) => {
