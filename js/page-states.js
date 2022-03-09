@@ -35,3 +35,5 @@ const getActiveStatePage = () => {
   formPage.classList.remove( 'ad-form--disabled' );
   mapFilters.classList.remove( 'map__filters--disabled' );
 };
+
+export { getInactiveStatePage, getActiveStatePage };
