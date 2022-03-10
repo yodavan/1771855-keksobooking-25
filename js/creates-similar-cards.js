@@ -8,7 +8,7 @@ const TRANSLATE_VALUE = {
   hotel: 'Отель',
 };
 
-const PHOTOS_ADD_ELEMENT = ( hotelCard, item ) => {
+const photosAddElement = ( hotelCard, item ) => {
   const photoList = hotelCard.querySelector('.popup__photos');
   const photoElement = photoList.querySelector('.popup__photo');
   const arrayPhotos = item.offer.photos;
@@ -22,7 +22,7 @@ const PHOTOS_ADD_ELEMENT = ( hotelCard, item ) => {
   photoElement.remove();
 };
 
-const FEATURES_APARTMENTS = ( hotelCard, item ) => {
+const featuresApartments = ( hotelCard, item ) => {
   const featureList = hotelCard.querySelectorAll('.popup__feature');
 
   featureList.forEach( (featureItem) => {
@@ -36,12 +36,12 @@ const FEATURES_APARTMENTS = ( hotelCard, item ) => {
   });
 };
 
-const ARRAY_HOTELS = similarHotelCard();
-const LIST_HOTEL_CARDS = document.querySelector('.map__canvas');
-const TEMPLATE_CARD = document.querySelector('#card').content;
+const arrayHotels = similarHotelCard();
+const listHotelCards = document.querySelector('.map__canvas');
+const templateCard = document.querySelector('#card').content;
 
-ARRAY_HOTELS.forEach(( item ) => {
-  const hotelCard = TEMPLATE_CARD.cloneNode(true);
+arrayHotels.forEach(( item ) => {
+  const hotelCard = templateCard.cloneNode(true);
   hotelCard.querySelector('.popup__avatar').src = item.author.avatar;
   hotelCard.querySelector('.popup__title').textContent = item.offer.title;
   hotelCard.querySelector('.popup__text--price').textContent = `${item.offer.price} ₽/ночь`;
@@ -50,8 +50,8 @@ ARRAY_HOTELS.forEach(( item ) => {
   hotelCard.querySelector('.popup__description').textContent = item.offer.description;
   hotelCard.querySelector('.popup__text--address').textContent = item.offer.address;
   hotelCard.querySelector('.popup__type').textContent = TRANSLATE_VALUE[item.offer.type];
-  PHOTOS_ADD_ELEMENT( hotelCard, item );
-  FEATURES_APARTMENTS( hotelCard, item );
+  photosAddElement( hotelCard, item );
+  featuresApartments( hotelCard, item );
 
-  LIST_HOTEL_CARDS.appendChild( hotelCard );
+  listHotelCards.appendChild( hotelCard );
 });
