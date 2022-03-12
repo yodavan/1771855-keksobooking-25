@@ -28,7 +28,7 @@ const getLengthString = ( element ) => {
   if ( element.inputItem.value.length < element.min ) {
     element.inputItem.setCustomValidity( `Увеличьте минимум на ${ element.min - element.inputItem.value.length } ${ element.value }` );
   } else if ( element.inputItem.value.length > element.max ) {
-    element.inputItem.setCustomValidity( `Уменьшите минимум на ${ element.inputItem.value.length - element.max } ${ element.value }` )
+    element.inputItem.setCustomValidity( `Уменьшите минимум на ${ element.inputItem.value.length - element.max } ${ element.value }` );
   } else {
     element.inputItem.setCustomValidity( '' );
   }
@@ -46,22 +46,20 @@ INPUT_TITLE.inputItem.addEventListener('input', () => {
 
 // Отключить кнопку в зависимости от выбора
 const SELECTION_VALUE = {
-  1: ["1"],
-  2: ["1", "2"],
-  3: ["1", "2", "3"],
-  100: ["0"],
-}
+  1: ['1'],
+  2: ['1', '2'],
+  3: ['1', '2', '3'],
+  100: ['0'],
+};
 
 const ROOM_NUMBER = document.querySelector( '#room_number' );
 const OPTIONS_ROOM = ROOM_NUMBER.querySelectorAll( 'option' );
 
 const getDisabledElements = (element, item) => {
-  const isNecessary = element.some(( someItem ) => {
-    return someItem === item.value;
-  })
+  const isNecessary = element.some(( someItem ) => someItem === item.value);
 
   if ( !isNecessary ) {
-    item.disabled = true
+    item.disabled = true;
   } else {
     item.disabled = false;
     item.selected = true;
@@ -75,7 +73,7 @@ OPTIONS_ROOM.forEach(( itemRoom ) => {
 
     options.forEach(( item ) => {
       getDisabledElements( SELECTION_VALUE[itemRoom.value], item );
-    })
+    });
   }
 });
 
