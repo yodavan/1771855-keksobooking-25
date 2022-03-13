@@ -52,16 +52,16 @@ const getDisabledElements = (element, item) => {
 };
 
 const capscity = document.querySelector( '#capacity' );
-const options = capscity.querySelectorAll( 'option' );
+const optionsCapscity = capscity.querySelectorAll( 'option' );
 
 optionsRoom.forEach(( itemRoom ) => {
   if (itemRoom.selected) {
-    options.forEach(( item ) => getDisabledElements( SELECTION_VALUE[itemRoom.value], item ));
+    optionsCapscity.forEach(( item ) => getDisabledElements( SELECTION_VALUE[itemRoom.value], item ));
   }
 });
 
 roomNumber.addEventListener('change', (evt) => {
-  options.forEach(( item ) => getDisabledElements( SELECTION_VALUE[evt.target.value], item ));
+  optionsCapscity.forEach(( item ) => getDisabledElements( SELECTION_VALUE[evt.target.value], item ));
 });
 
 // Значение выбирается в зависимости от значения другой кнопки
@@ -75,8 +75,8 @@ const onSwitchData = ( evt, element ) => {
     if ( evt.target.value === item.value ) {
       item.selected = true;
     }
-  })
-}
+  });
+};
 
 timeIn.addEventListener('change', ( evt ) => onSwitchData( evt, timeOut ));
 
