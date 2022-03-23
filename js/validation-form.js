@@ -3,10 +3,13 @@ const inputTitle = document.querySelector( '#title' );
 
 const getValueInput = ( element ) => {
   if ( element.value < +element.min ) {
+    element.style.border = ('2px solid red');
     element.setCustomValidity( `Увеличьте минимум на ${ +element.min - element.value } руб.` );
   } else if ( element.value > +element.max ) {
+    element.style.border = ('2px solid red');
     element.setCustomValidity( `Уменьшите минимум на ${ element.value - +element.max } руб.` );
   } else {
+    element.style.border = ('2px solid green');
     element.setCustomValidity( '' );
   }
 
@@ -15,10 +18,13 @@ const getValueInput = ( element ) => {
 
 const getLengthString = ( element ) => {
   if ( element.value.length < +element.minLength ) {
+    element.style.border = ('2px solid red');
     element.setCustomValidity( `Увеличьте минимум на ${ +element.minLength - element.value.length } символов` );
   } else if ( element.value.length > +element.maxLength ) {
+    element.style.border = ('2px solid red');
     element.setCustomValidity( `Уменьшите минимум на ${ element.value.length - +element.maxLength } символов` );
   } else {
+    element.style.border = ('2px solid green');
     element.setCustomValidity( '' );
   }
 
@@ -106,6 +112,9 @@ typeOptions.forEach(( itemType ) => {
 });
 
 typeHouse.addEventListener('change', ( evt ) => {
-  inputPrice.value = '';
+  if ( inputPrice.value === '' ) {
+    return onReplacingValue(MIN_PRICE[ evt.target.value ]);
+  }
   onReplacingValue(MIN_PRICE[ evt.target.value ]);
+  getValueInput( inputPrice );
 });
