@@ -431,6 +431,9 @@ fieldset {
 .ad-form__slider:not(#fake-id) .noUi-handle::before {
   display: none;
 }
+.ad-form__slider {
+  margin-top: 5px;
+}
 
 .features legend {
   padding-bottom: 5px;

@@ -36,4 +36,6 @@ const getActiveStatePage = () => {
   mapFilters.classList.remove( 'map__filters--disabled' );
 };
 
-export { getInactiveStatePage, getActiveStatePage };
+getInactiveStatePage();
+
+export { getActiveStatePage };

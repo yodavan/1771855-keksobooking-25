@@ -1,5 +1,3 @@
-import {similarHotelCard} from './random-data.js';
-
 const TRANSLATE_VALUE = {
   flat: 'Квартира',
   bungalow: 'Бунгало',
@@ -13,6 +11,10 @@ const photosAddElement = ( hotelCard, item ) => {
   const photoElement = photoList.querySelector('.popup__photo');
   const arrayPhotos = item.offer.photos;
 
+  if ( !arrayPhotos ) {
+    return photoList.remove();
+  }
+
   arrayPhotos.forEach(( itemElement ) => {
     const photoItem = photoElement.cloneNode(true);
     photoItem.src = itemElement;
@@ -23,6 +25,10 @@ const photosAddElement = ( hotelCard, item ) => {
 };
 
 const featuresApartments = ( hotelCard, item ) => {
+  if ( !item.offer.features ) {
+    return hotelCard.querySelector('.popup__features').remove();
+  }
+
   const featureList = hotelCard.querySelectorAll('.popup__feature');
 
   featureList.forEach( (featureItem) => {
@@ -36,22 +42,39 @@ const featuresApartments = ( hotelCard, item ) => {
   });
 };
 
-const arrayHotels = similarHotelCard();
-const listHotelCards = document.querySelector('.map__canvas');
-const templateCard = document.querySelector('#card').content;
+const checkAuthorAvatar = ( hotelCard, item ) => {
+  if ( !item.author.avatar ) {
+    return hotelCard.querySelector('.popup__avatar').remove();
+  }
 
-arrayHotels.forEach(( item ) => {
-  const hotelCard = templateCard.cloneNode(true);
   hotelCard.querySelector('.popup__avatar').src = item.author.avatar;
+};
+
+const checkDescription = ( hotelCard, item ) => {
+  if ( item.offer.description === '' ) {
+    hotelCard.querySelector('.popup__description').remove();
+  }
+
+  hotelCard.querySelector('.popup__description').textContent = item.offer.description;
+};
+
+
+const createHotelCard = (item) => {
+  const templateCard = document.querySelector('#card').content.querySelector('.popup');
+  const hotelCard = templateCard.cloneNode(true);
+
+  checkAuthorAvatar( hotelCard, item );
   hotelCard.querySelector('.popup__title').textContent = item.offer.title;
   hotelCard.querySelector('.popup__text--price').textContent = `${item.offer.price} ₽/ночь`;
   hotelCard.querySelector('.popup__text--capacity').textContent = `${item.offer.rooms} комнаты для ${item.offer.guests} гостей`;
   hotelCard.querySelector('.popup__text--time').textContent = `Заезд после ${item.offer.checkin}, выезд до ${item.offer.checkout}`;
-  hotelCard.querySelector('.popup__description').textContent = item.offer.description;
   hotelCard.querySelector('.popup__text--address').textContent = item.offer.address;
   hotelCard.querySelector('.popup__type').textContent = TRANSLATE_VALUE[item.offer.type];
+  checkDescription( hotelCard, item );
   photosAddElement( hotelCard, item );
   featuresApartments( hotelCard, item );
 
-  listHotelCards.appendChild( hotelCard );
-});
+  return hotelCard;
+};
+
+export { createHotelCard };
