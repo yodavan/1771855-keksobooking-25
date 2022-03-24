@@ -56,7 +56,7 @@ const checkDescription = ( hotelCard, item ) => {
   }
 
   hotelCard.querySelector('.popup__description').textContent = item.offer.description;
-}
+};
 
 
 const createHotelCard = (item) => {
@@ -75,6 +75,6 @@ const createHotelCard = (item) => {
   featuresApartments( hotelCard, item );
 
   return hotelCard;
-}
+};
 
 export { createHotelCard };
