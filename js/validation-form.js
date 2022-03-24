@@ -118,3 +118,5 @@ typeHouse.addEventListener('change', ( evt ) => {
   onReplacingValue(MIN_PRICE[ evt.target.value ]);
   getValueInput( inputPrice );
 });
+
+export { inputPrice, getValueInput, typeHouse, MIN_PRICE };

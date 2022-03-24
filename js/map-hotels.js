@@ -81,3 +81,5 @@ arrayHotels.forEach(( item ) => {
     .addTo(map)
     .bindPopup(createHotelCard(item));
 });
+
+export { resetButton };
