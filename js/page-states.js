@@ -1,10 +1,10 @@
-const getInactiveStatePage = () => {
-  const formPage = document.querySelector( '.ad-form' );
-  const fieldsetFormPage = formPage.querySelectorAll( 'fieldset' );
-  const mapFilters = document.querySelector( '.map__filters' );
-  const select = mapFilters.querySelectorAll( 'select' );
-  const fieldsetMapFilters = mapFilters.querySelector( 'fieldset' );
+const formPage = document.querySelector( '.ad-form' );
+const fieldsetFormPage = formPage.querySelectorAll( 'fieldset' );
+const mapFilters = document.querySelector( '.map__filters' );
+const select = mapFilters.querySelectorAll( 'select' );
+const fieldsetMapFilters = mapFilters.querySelector( 'fieldset' );
 
+const getInactiveStatePage = () => {
   select.forEach( ( item ) => {
     item.disabled = true;
   });
@@ -18,12 +18,6 @@ const getInactiveStatePage = () => {
 };
 
 const getActiveStatePage = () => {
-  const formPage = document.querySelector( '.ad-form' );
-  const fieldsetFormPage = formPage.querySelectorAll( 'fieldset' );
-  const mapFilters = document.querySelector( '.map__filters' );
-  const select = mapFilters.querySelectorAll( 'select' );
-  const fieldsetMapFilters = mapFilters.querySelector( 'fieldset' );
-
   fieldsetFormPage.forEach( ( item ) => {
     item.disabled = false;
   });
@@ -38,4 +32,4 @@ const getActiveStatePage = () => {
 
 getInactiveStatePage();
 
-export { getActiveStatePage };
+export { getActiveStatePage, formPage };

@@ -119,4 +119,4 @@ typeHouse.addEventListener('change', ( evt ) => {
   getValueInput( inputPrice );
 });
 
-export { inputPrice, getValueInput, typeHouse, MIN_PRICE };
+export { inputPrice, inputTitle, getValueInput, typeHouse, MIN_PRICE };
