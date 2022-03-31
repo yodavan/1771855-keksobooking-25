@@ -58,7 +58,6 @@ const checkDescription = ( hotelCard, item ) => {
   hotelCard.querySelector('.popup__description').textContent = item.offer.description;
 };
 
-
 const createHotelCard = (item) => {
   const templateCard = document.querySelector('#card').content.querySelector('.popup');
   const hotelCard = templateCard.cloneNode(true);

@@ -1,8 +1,7 @@
 import { getActiveStatePage } from './page-states.js';
-import { similarHotelCard } from './random-data.js';
 import { createHotelCard } from './creates-similar-cards.js';
 
-const map = L.map('map-canvas')
+const map = L.map( 'map-canvas' )
   .on('load', () => {
     getActiveStatePage();
   })
@@ -10,19 +9,19 @@ const map = L.map('map-canvas')
   .setView({
     lat: 35.692429,
     lng: 139.776915,
-  }, 11);
+  }, 12);
 
 L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   },
-).addTo(map);
+).addTo( map );
 
 const mainPinIcon = L.icon({
   iconUrl: './img/main-pin.svg',
-  iconSize: [52, 52],
-  iconAnchor: [26, 52],
+  iconSize: [ 52, 52 ],
+  iconAnchor: [ 26, 52 ],
 });
 
 const mainPinMarker = L.marker(
@@ -36,50 +35,36 @@ const mainPinMarker = L.marker(
   },
 );
 
-mainPinMarker.addTo(map);
+mainPinMarker.addTo( map );
 
-mainPinMarker.on('moveend', (evt) => {
-  document.querySelector('#address').value = evt.target.getLatLng();
-});
-
-const resetButton = document.querySelector('.ad-form__reset');
-
-resetButton.addEventListener('click', () => {
-  mainPinMarker.setLatLng({
-    lat: 35.692429,
-    lng: 139.776915,
-  });
-
-  map.setView({
-    lat: 35.692429,
-    lng: 139.776915,
-  }, 11);
+mainPinMarker.on('moveend', ( evt ) => {
+  document.querySelector( '#address' ).value = evt.target.getLatLng();
 });
 
 const pinIcon = L.icon({
   iconUrl: './img/pin.svg',
-  iconSize: [40, 40],
-  iconAnchor: [20, 40],
+  iconSize: [ 40, 40 ],
+  iconAnchor: [ 20, 40 ],
 });
 
-const arrayHotels = similarHotelCard();
+const getHotelMap = ( arrayHotels ) => {
+  arrayHotels.forEach(( item ) => {
+    const { location: { lat, lng } } = item;
 
-arrayHotels.forEach(( item ) => {
-  const { location: { lat, lng } } = item;
+    const marker = L.marker(
+      {
+        lat,
+        lng
+      },
+      {
+        pinIcon,
+      },
+    );
 
-  const marker = L.marker(
-    {
-      lat,
-      lng
-    },
-    {
-      pinIcon,
-    },
-  );
+    marker
+      .addTo( map )
+      .bindPopup( createHotelCard( item ));
+  });
+};
 
-  marker
-    .addTo(map)
-    .bindPopup(createHotelCard(item));
-});
-
-export { resetButton };
+export { getHotelMap, mainPinMarker, map };
