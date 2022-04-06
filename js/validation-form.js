@@ -36,38 +36,42 @@ inputPrice.addEventListener('input', () => getValueInput( inputPrice ));
 inputTitle.addEventListener('input', () => getLengthString( inputTitle ));
 
 // Отключить кнопку в зависимости от выбора
-const SELECTION_VALUE = {
+const ROOM_VALUE = {
   1: ['1'],
   2: ['1', '2'],
   3: ['1', '2', '3'],
   100: ['0'],
 };
 
-const roomNumber = document.querySelector( '#room_number' );
-const optionsRoom = roomNumber.querySelectorAll( 'option' );
-
-const getDisabledElements = (element, item) => {
-  const isNecessary = element.some(( someItem ) => someItem === item.value);
-
-  if ( !isNecessary ) {
-    item.disabled = true;
-  } else {
-    item.disabled = false;
-    item.selected = true;
-  }
+const CAPCITY_VALUE = {
+  1: ['1', '2', '3'],
+  2: ['2', '3'],
+  3: ['3'],
+  0: ['100'],
 };
 
+const roomNumber = document.querySelector( '#room_number' );
 const capscity = document.querySelector( '#capacity' );
-const optionsCapscity = capscity.querySelectorAll( 'option' );
 
-optionsRoom.forEach(( itemRoom ) => {
-  if (itemRoom.selected) {
-    optionsCapscity.forEach(( item ) => getDisabledElements( SELECTION_VALUE[itemRoom.value], item ));
+const getElementList = ( element, select, selectSecond ) => {
+  const isNecessary = element.some(( someItem ) => someItem === select.value);
+
+  if ( !isNecessary ) {
+    selectSecond.setCustomValidity( 'Выберите другой вариант' );
   }
-});
+  else {
+    selectSecond.setCustomValidity( '' );
+  }
+
+  selectSecond.reportValidity();
+};
 
 roomNumber.addEventListener('change', (evt) => {
-  optionsCapscity.forEach(( item ) => getDisabledElements( SELECTION_VALUE[evt.target.value], item ));
+  getElementList( ROOM_VALUE[evt.target.value], capscity, capscity );
+});
+
+capscity.addEventListener('change', (evt) => {
+  getElementList( CAPCITY_VALUE[evt.target.value], roomNumber, capscity );
 });
 
 // Значение выбирается в зависимости от значения другой кнопки
@@ -119,4 +123,4 @@ typeHouse.addEventListener('change', ( evt ) => {
   getValueInput( inputPrice );
 });
 
-export { inputPrice, inputTitle, getValueInput, typeHouse, MIN_PRICE };
+export { inputPrice, inputTitle, getValueInput };

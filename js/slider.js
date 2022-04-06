@@ -1,5 +1,5 @@
 /* global noUiSlider:readonly */
-import { inputPrice, getValueInput, typeHouse, MIN_PRICE } from './validation-form.js';
+import { inputPrice, getValueInput } from './validation-form.js';
 
 const sliderElement = document.querySelector( '.ad-form__slider' );
 
@@ -26,14 +26,6 @@ noUiSlider.create( sliderElement, {
 sliderElement.noUiSlider.on( 'update', () => {
   inputPrice.value = sliderElement.noUiSlider.get();
   getValueInput( inputPrice );
-});
-
-typeHouse.addEventListener( 'change', ( evt ) => {
-
-  if ( MIN_PRICE[ evt.target.value ] > inputPrice.value ) {
-    return sliderElement.noUiSlider.set( MIN_PRICE[ evt.target.value ] );
-  }
-
 });
 
 export { sliderElement };
