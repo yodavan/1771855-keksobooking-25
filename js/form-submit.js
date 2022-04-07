@@ -6,7 +6,7 @@ import { sendData } from './api.js';
 import { resetPhoto } from './view-photos.js';
 
 //Ошибка получения данных
-const errorReceptionData = () => {
+const getErrorReceptionData = () => {
   const templateCard = document.querySelector( '#error' ).content.querySelector( '.error' );
   const error = templateCard.cloneNode( true );
   error.querySelector('.error__message').textContent = 'Данные не получены. Обновите страницу';
@@ -37,7 +37,7 @@ const onClosePopupSuccess = ( evt ) => {
 };
 
 //Сообщения об отправке
-const successMessage = () => {
+const getSuccessMessage = () => {
   const templateCard = document.querySelector( '#success' ).content.querySelector( '.success' );
   const success = templateCard.cloneNode( true );
 
@@ -51,7 +51,7 @@ const successMessage = () => {
   document.body.append( success );
 };
 
-const errorMessage = () => {
+const getErrorMessage = () => {
   const templateCard = document.querySelector( '#error' ).content.querySelector( '.error' );
   const error = templateCard.cloneNode( true );
   const button = error.querySelector( '.error__button' );
@@ -103,7 +103,7 @@ const lockButton = () => {
   formSubmit.disabled = true;
 };
 
-const unlockedButton = () => {
+const unlockTheButton = () => {
   formSubmit.disabled = false;
 };
 
@@ -135,12 +135,12 @@ const setHotelFormSubmit = ( onSuccess ) => {
       sendData(
         () => {
           onSuccess();
-          unlockedButton();
+          unlockTheButton();
         },
-        successMessage,
+        getSuccessMessage,
         () => {
-          errorMessage();
-          unlockedButton();
+          getErrorMessage();
+          unlockTheButton();
         },
         new FormData(evt.target)
       );
@@ -148,4 +148,4 @@ const setHotelFormSubmit = ( onSuccess ) => {
   });
 };
 
-export { setHotelFormSubmit, getInitialState, errorReceptionData, onResetForm, onSubmitForm };
+export { setHotelFormSubmit, getInitialState, getErrorReceptionData, onResetForm, onSubmitForm };

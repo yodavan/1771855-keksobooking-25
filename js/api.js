@@ -1,5 +1,5 @@
 import { getActiveMap } from './page-states.js';
-import { errorReceptionData, onResetForm, onSubmitForm } from './form-submit.js';
+import { getErrorReceptionData, onResetForm, onSubmitForm } from './form-submit.js';
 import { onClickType, onHousingPrice, onHousingRooms, onHousingGuests, onHousingFeatures } from './filter.js';
 import { debounce } from './debounce.js';
 
@@ -11,9 +11,8 @@ const getData = ( onSuccess ) => {
       if ( response.ok ) {
         getActiveMap();
         return response.json();
-      } else {
-        throw new Error();
       }
+      throw new Error();
     })
     .then(( hotels ) => {
       onSuccess( hotels );
@@ -26,7 +25,7 @@ const getData = ( onSuccess ) => {
       onSubmitForm( () => onSuccess( hotels ) );
     })
     .catch(() => {
-      errorReceptionData();
+      getErrorReceptionData();
     });
 };
 

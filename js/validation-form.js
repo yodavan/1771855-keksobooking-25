@@ -1,5 +1,29 @@
 const inputPrice = document.querySelector( '#price' );
 const inputTitle = document.querySelector( '#title' );
+const roomNumber = document.querySelector( '#room_number' );
+const capscity = document.querySelector( '#capacity' );
+const typeHouse = document.querySelector( '#type' );
+const typeOptions = typeHouse.querySelectorAll( 'option' );
+
+const MIN_PRICE = {
+  'bungalow': 0,
+  'flat': 1000,
+  'hotel': 3000,
+  'house': 5000,
+  'palace': 10000,
+};
+const ROOM_VALUE = {
+  1: ['1'],
+  2: ['1', '2'],
+  3: ['1', '2', '3'],
+  100: ['0'],
+};
+const CAPCITY_VALUE = {
+  1: ['1', '2', '3'],
+  2: ['2', '3'],
+  3: ['3'],
+  0: ['100'],
+};
 
 const getValueInput = ( element ) => {
   if ( element.value < +element.min ) {
@@ -36,23 +60,6 @@ inputPrice.addEventListener('input', () => getValueInput( inputPrice ));
 inputTitle.addEventListener('input', () => getLengthString( inputTitle ));
 
 // Отключить кнопку в зависимости от выбора
-const ROOM_VALUE = {
-  1: ['1'],
-  2: ['1', '2'],
-  3: ['1', '2', '3'],
-  100: ['0'],
-};
-
-const CAPCITY_VALUE = {
-  1: ['1', '2', '3'],
-  2: ['2', '3'],
-  3: ['3'],
-  0: ['100'],
-};
-
-const roomNumber = document.querySelector( '#room_number' );
-const capscity = document.querySelector( '#capacity' );
-
 const getElementList = ( element, select, selectSecond ) => {
   const isNecessary = element.some(( someItem ) => someItem === select.value);
 
@@ -93,17 +100,6 @@ timeIn.addEventListener('change', ( evt ) => onSwitchData( evt, timeOut ));
 timeOut.addEventListener('change', ( evt ) => onSwitchData( evt, timeIn ));
 
 // Меняет значение placeholder и min в зависимости от выбора категории
-const typeHouse = document.querySelector( '#type' );
-const typeOptions = typeHouse.querySelectorAll( 'option' );
-
-const MIN_PRICE = {
-  'bungalow': 0,
-  'flat': 1000,
-  'hotel': 3000,
-  'house': 5000,
-  'palace': 10000,
-};
-
 const onReplacingValue = ( element ) => {
   inputPrice.placeholder = element;
   inputPrice.min = element;

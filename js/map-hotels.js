@@ -42,13 +42,13 @@ mainPinMarker.addTo( map );
 const addressHotel = document.querySelector( '#address' );
 
 const getDefaultAddress = () => {
-  addressHotel.value = `lat: ${mainPinMarker._latlng.lat.toFixed(5)} lng: ${mainPinMarker._latlng.lng.toFixed(5)}`;
+  addressHotel.value = `${mainPinMarker._latlng.lat.toFixed(5)}, ${mainPinMarker._latlng.lng.toFixed(5)}`;
 };
 
 getDefaultAddress();
 
 mainPinMarker.on('moveend', ( evt ) => {
-  addressHotel.value = `lat: ${evt.target.getLatLng().lat.toFixed(5)} lng: ${evt.target.getLatLng().lng.toFixed(5)}`;
+  addressHotel.value = `${evt.target.getLatLng().lat.toFixed(5)}, ${evt.target.getLatLng().lng.toFixed(5)}`;
 });
 
 const pinIcon = L.icon({

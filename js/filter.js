@@ -17,7 +17,7 @@ const PRICE = {
 };
 
 //Функция сравнения значений
-const comparisonOfValues = ( item, element, address ) => {
+const getComparisonOfValues = ( item, element, address ) => {
   if ( element.value === 'any' ) {
     return item;
   }
@@ -58,10 +58,10 @@ const filterFeatures = ( element, item ) => {
 };
 
 const filterMap = ( array ) => array
-  .filter(( item ) => comparisonOfValues( item, housingType, item.offer.type ))
+  .filter(( item ) => getComparisonOfValues( item, housingType, item.offer.type ))
   .filter(( item ) => filterPrice( item ))
-  .filter(( item ) => comparisonOfValues( item, housingRooms, item.offer.rooms ))
-  .filter(( item ) => comparisonOfValues( item, housingGuests, item.offer.guests ))
+  .filter(( item ) => getComparisonOfValues( item, housingRooms, item.offer.rooms ))
+  .filter(( item ) => getComparisonOfValues( item, housingGuests, item.offer.guests ))
   .filter(( item ) => filterFeatures( first, item ))
   .filter(( item ) => filterFeatures( second, item ))
   .filter(( item ) => filterFeatures( third, item ))
