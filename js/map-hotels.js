@@ -1,9 +1,10 @@
-import { getActiveStatePage } from './page-states.js';
+import { getActiveForm } from './page-states.js';
 import { createHotelCard } from './creates-similar-cards.js';
+import { filterMap } from './filter.js';
 
 const map = L.map( 'map-canvas' )
   .on('load', () => {
-    getActiveStatePage();
+    getActiveForm();
   })
 
   .setView({
@@ -37,8 +38,17 @@ const mainPinMarker = L.marker(
 
 mainPinMarker.addTo( map );
 
+//Значение по умолчанию input address
+const addressHotel = document.querySelector( '#address' );
+
+const getDefaultAddress = () => {
+  addressHotel.value = `lat: ${mainPinMarker._latlng.lat.toFixed(5)} lng: ${mainPinMarker._latlng.lng.toFixed(5)}`;
+};
+
+getDefaultAddress();
+
 mainPinMarker.on('moveend', ( evt ) => {
-  document.querySelector( '#address' ).value = evt.target.getLatLng();
+  addressHotel.value = `lat: ${evt.target.getLatLng().lat.toFixed(5)} lng: ${evt.target.getLatLng().lng.toFixed(5)}`;
 });
 
 const pinIcon = L.icon({
@@ -47,24 +57,33 @@ const pinIcon = L.icon({
   iconAnchor: [ 20, 40 ],
 });
 
+const NUMBER_OF_ELEMENTS = 10;
+
+const markerGroup = L.layerGroup().addTo( map );
+
 const getHotelMap = ( arrayHotels ) => {
-  arrayHotels.forEach(( item ) => {
-    const { location: { lat, lng } } = item;
 
-    const marker = L.marker(
-      {
-        lat,
-        lng
-      },
-      {
-        pinIcon,
-      },
-    );
+  markerGroup.clearLayers();
 
-    marker
-      .addTo( map )
-      .bindPopup( createHotelCard( item ));
-  });
+  filterMap(arrayHotels)
+    .slice(0, NUMBER_OF_ELEMENTS)
+    .forEach(( item ) => {
+      const { location: { lat, lng } } = item;
+
+      const marker = L.marker(
+        {
+          lat,
+          lng
+        },
+        {
+          pinIcon,
+        },
+      );
+
+      marker
+        .addTo( markerGroup )
+        .bindPopup( createHotelCard( item ));
+    });
 };
 
-export { getHotelMap, mainPinMarker, map };
+export { getHotelMap, mainPinMarker, map, getDefaultAddress };
