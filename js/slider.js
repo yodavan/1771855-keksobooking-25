@@ -1,4 +1,3 @@
-/* global noUiSlider:readonly */
 import { inputPrice, getValueInput } from './validation-form.js';
 
 const sliderElement = document.querySelector( '.ad-form__slider' );
