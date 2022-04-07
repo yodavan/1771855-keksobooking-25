@@ -3,6 +3,7 @@ import { inputPrice, inputTitle } from './validation-form.js';
 import { sliderElement } from './slider.js';
 import { mainPinMarker, map, getDefaultAddress } from './map-hotels.js';
 import { sendData } from './api.js';
+import { resetPhoto } from './view-photos.js';
 
 //Ошибка получения данных
 const errorReceptionData = () => {
@@ -88,6 +89,7 @@ const getInitialState = () => {
   inputPrice.setAttribute( 'value', '5000' );
   sliderElement.noUiSlider.set( 5000 );
   getDefaultAddress();
+  resetPhoto();
 
   const popup = document.querySelector( '.leaflet-popup' );
   if ( popup ) {
