@@ -2,6 +2,8 @@ import { getActiveForm } from './page-states.js';
 import { createHotelCard } from './creates-similar-cards.js';
 import { filterMap } from './filter.js';
 
+const NUMBER_OF_ELEMENTS = 10;
+
 const map = L.map( 'map-canvas' )
   .on('load', () => {
     getActiveForm();
@@ -56,8 +58,6 @@ const pinIcon = L.icon({
   iconSize: [ 40, 40 ],
   iconAnchor: [ 20, 40 ],
 });
-
-const NUMBER_OF_ELEMENTS = 10;
 
 const markerGroup = L.layerGroup().addTo( map );
 

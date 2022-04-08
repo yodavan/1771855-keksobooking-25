@@ -6,7 +6,7 @@ const TRANSLATE_VALUE = {
   hotel: 'Отель',
 };
 
-const photosAddElement = ( hotelCard, item ) => {
+const addPhotosElement = ( hotelCard, item ) => {
   const photoList = hotelCard.querySelector('.popup__photos');
   const photoElement = photoList.querySelector('.popup__photo');
   const arrayPhotos = item.offer.photos;
@@ -70,7 +70,7 @@ const createHotelCard = (item) => {
   hotelCard.querySelector('.popup__text--address').textContent = item.offer.address;
   hotelCard.querySelector('.popup__type').textContent = TRANSLATE_VALUE[item.offer.type];
   checkDescription( hotelCard, item );
-  photosAddElement( hotelCard, item );
+  addPhotosElement( hotelCard, item );
   featuresApartments( hotelCard, item );
 
   return hotelCard;

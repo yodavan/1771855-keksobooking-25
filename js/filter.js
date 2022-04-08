@@ -1,3 +1,8 @@
+const PRICE = {
+  'low': 10000,
+  'high': 50000,
+};
+
 const housingType = document.querySelector('#housing-type');
 const housingPrice = document.querySelector('#housing-price');
 const housingRooms = document.querySelector('#housing-rooms');
@@ -9,12 +14,6 @@ const third = housingFeatures.querySelector('#filter-parking');
 const fourth = housingFeatures.querySelector('#filter-washer');
 const fifth = housingFeatures.querySelector('#filter-elevator');
 const sixth = housingFeatures.querySelector('#filter-conditioner');
-
-
-const PRICE = {
-  'low': 10000,
-  'high': 50000,
-};
 
 //Функция сравнения значений
 const getComparisonOfValues = ( item, element, address ) => {
@@ -69,34 +68,34 @@ const filterMap = ( array ) => array
   .filter(( item ) => filterFeatures( fifth, item ))
   .filter(( item ) => filterFeatures( sixth, item ));
 
-const onClickType = ( element ) => {
+const getTypeHousing = ( element ) => {
   housingType.addEventListener( 'change', () => {
     element();
   });
 };
 
-const onHousingPrice = ( element ) => {
+const getHousingPrice = ( element ) => {
   housingPrice.addEventListener( 'change', () => {
     element();
   });
 };
 
-const onHousingRooms = ( element ) => {
+const getHousingRooms = ( element ) => {
   housingRooms.addEventListener( 'change', () => {
     element();
   });
 };
 
-const onHousingGuests = ( element ) => {
+const getNumberGuests = ( element ) => {
   housingGuests.addEventListener( 'change', () => {
     element();
   });
 };
 
-const onHousingFeatures = ( element ) => {
+const getHousingFeatures = ( element ) => {
   housingFeatures.addEventListener( 'change', () => {
     element();
   });
 };
 
-export { filterMap, onClickType, onHousingPrice, onHousingRooms, onHousingGuests, onHousingFeatures };
+export { filterMap, getTypeHousing, getHousingPrice, getHousingRooms, getNumberGuests, getHousingFeatures };

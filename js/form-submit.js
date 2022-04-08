@@ -108,7 +108,7 @@ const unlockTheButton = () => {
 };
 
 //Очистка формы
-const onResetForm = ( element ) => {
+const getResetForm = ( element ) => {
   const resetButton = document.querySelector( '.ad-form__reset' );
   resetButton.addEventListener('click', (evt) => {
     evt.preventDefault();
@@ -117,7 +117,7 @@ const onResetForm = ( element ) => {
   });
 };
 
-const onSubmitForm = ( element ) => {
+const getSubmitForm = ( element ) => {
   formPage.addEventListener('submit', (evt) => {
     evt.preventDefault();
     getInitialState();
@@ -148,4 +148,4 @@ const setHotelFormSubmit = ( onSuccess ) => {
   });
 };
 
-export { setHotelFormSubmit, getInitialState, getErrorReceptionData, onResetForm, onSubmitForm };
+export { setHotelFormSubmit, getInitialState, getErrorReceptionData, getResetForm, getSubmitForm };

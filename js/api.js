@@ -1,7 +1,7 @@
 import { getActiveMap } from './page-states.js';
-import { getErrorReceptionData, onResetForm, onSubmitForm } from './form-submit.js';
-import { onClickType, onHousingPrice, onHousingRooms, onHousingGuests, onHousingFeatures } from './filter.js';
-import { debounce } from './debounce.js';
+import { getErrorReceptionData, getResetForm, getSubmitForm } from './form-submit.js';
+import { getTypeHousing, getHousingPrice, getHousingRooms, getNumberGuests, getHousingFeatures } from './filter.js';
+import { getDebounce } from './debounce.js';
 
 const TIME_DEBOUNCE = 500;
 
@@ -16,13 +16,13 @@ const getData = ( onSuccess ) => {
     })
     .then(( hotels ) => {
       onSuccess( hotels );
-      onClickType( debounce( () => onSuccess( hotels ), TIME_DEBOUNCE ) );
-      onHousingPrice( debounce( () => onSuccess( hotels ), TIME_DEBOUNCE ) );
-      onHousingRooms( debounce( () => onSuccess( hotels ), TIME_DEBOUNCE ) );
-      onHousingGuests( debounce( () => onSuccess( hotels ), TIME_DEBOUNCE ) );
-      onHousingFeatures( debounce( () => onSuccess( hotels ), TIME_DEBOUNCE ) );
-      onResetForm( () => onSuccess( hotels ) );
-      onSubmitForm( () => onSuccess( hotels ) );
+      getTypeHousing( getDebounce( () => onSuccess( hotels ), TIME_DEBOUNCE ) );
+      getHousingPrice( getDebounce( () => onSuccess( hotels ), TIME_DEBOUNCE ) );
+      getHousingRooms( getDebounce( () => onSuccess( hotels ), TIME_DEBOUNCE ) );
+      getNumberGuests( getDebounce( () => onSuccess( hotels ), TIME_DEBOUNCE ) );
+      getHousingFeatures( getDebounce( () => onSuccess( hotels ), TIME_DEBOUNCE ) );
+      getResetForm( () => onSuccess( hotels ) );
+      getSubmitForm( () => onSuccess( hotels ) );
     })
     .catch(() => {
       getErrorReceptionData();

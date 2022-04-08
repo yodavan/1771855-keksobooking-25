@@ -1,10 +1,3 @@
-const inputPrice = document.querySelector( '#price' );
-const inputTitle = document.querySelector( '#title' );
-const roomNumber = document.querySelector( '#room_number' );
-const capscity = document.querySelector( '#capacity' );
-const typeHouse = document.querySelector( '#type' );
-const typeOptions = typeHouse.querySelectorAll( 'option' );
-
 const MIN_PRICE = {
   'bungalow': 0,
   'flat': 1000,
@@ -24,6 +17,13 @@ const CAPCITY_VALUE = {
   3: ['3'],
   0: ['100'],
 };
+
+const inputPrice = document.querySelector( '#price' );
+const inputTitle = document.querySelector( '#title' );
+const roomNumber = document.querySelector( '#room_number' );
+const capscity = document.querySelector( '#capacity' );
+const typeHouse = document.querySelector( '#type' );
+const typeOptions = typeHouse.querySelectorAll( 'option' );
 
 const getValueInput = ( element ) => {
   if ( element.value < +element.min ) {
@@ -100,22 +100,22 @@ timeIn.addEventListener('change', ( evt ) => onSwitchData( evt, timeOut ));
 timeOut.addEventListener('change', ( evt ) => onSwitchData( evt, timeIn ));
 
 // Меняет значение placeholder и min в зависимости от выбора категории
-const onReplacingValue = ( element ) => {
+const getReplacingValue = ( element ) => {
   inputPrice.placeholder = element;
   inputPrice.min = element;
 };
 
 typeOptions.forEach(( itemType ) => {
   if ( itemType.selected ) {
-    onReplacingValue(MIN_PRICE[ itemType.value ]);
+    getReplacingValue(MIN_PRICE[ itemType.value ]);
   }
 });
 
 typeHouse.addEventListener('change', ( evt ) => {
   if ( inputPrice.value === '' ) {
-    return onReplacingValue(MIN_PRICE[ evt.target.value ]);
+    return getReplacingValue(MIN_PRICE[ evt.target.value ]);
   }
-  onReplacingValue(MIN_PRICE[ evt.target.value ]);
+  getReplacingValue(MIN_PRICE[ evt.target.value ]);
   getValueInput( inputPrice );
 });
 

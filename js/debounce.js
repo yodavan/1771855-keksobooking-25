@@ -1,4 +1,4 @@
-const debounce = ( callback, timeoutDelay ) => {
+const getDebounce = ( callback, timeoutDelay ) => {
   let timeoutId;
 
   return (...rest) => {
@@ -7,4 +7,4 @@ const debounce = ( callback, timeoutDelay ) => {
   };
 };
 
-export { debounce };
+export { getDebounce };
